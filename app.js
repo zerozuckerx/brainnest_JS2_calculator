@@ -5,8 +5,8 @@ toDisplay("0");
 //VARIABLES
 let currentNumberArray1 = [];
 let currentNumberArray2 = [];
-let currentNumber1;
-let currentNumber2;
+let currentNumber1 = 0;
+let currentNumber2 = 0;
 let operand = "";
 
 
@@ -69,7 +69,16 @@ numberButtons.forEach(button => {
 let operators = document.querySelectorAll(".operand")
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
-    functionName = operator.classList[0]
+    functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
+    if(currentNumber1 != 0 && currentNumber2 != 0 && operand != "") {
+      result = operate(operand,currentNumber1, currentNumber2)
+      toDisplay(Math.round(result*100)/100);
+      console.log(currentNumber1, currentNumber2);
+      currentNumber1 = result;
+      currentNumber2 = 0;
+      currentNumberArray2 = [];
+      console.log(currentNumber1, currentNumber2);
+    }
     console.log(functionName);
     switch(functionName) {
       case "add":

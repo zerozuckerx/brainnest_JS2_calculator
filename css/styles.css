@@ -18,7 +18,7 @@ button:active {
 }
 
 .calculator-grid {
-  border: 2px solid black;
+  border: 3px solid black;
   display: grid;
   grid-template-columns: repeat(4, 80px);
   grid-template-rows: repeat(5, 80px);
