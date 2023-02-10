@@ -3,6 +3,12 @@ body {
 }
 
 .calculator {
+  display: flex;
+  justify-content: center;
+  margin-top: 200px;
+}
+
+.calculator-grid {
   border: 2px solid black;
   display: grid;
   grid-template-columns: repeat(4, 80px);
@@ -17,6 +23,7 @@ body {
 }
 
 .display {
+  border: 1px solid black;
   grid-column: span 3;
 }
 
