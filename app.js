@@ -2,7 +2,9 @@
 let displayValue = document.querySelector(".display");
 displayValue.textContent = "0";
 //num1,num2
-let currentNumberArray = [];
+let currentNumberArray1 = [];
+let currentNumberArray2 = [];
+let operand = "";
 
 function add(num1, num2) {
   return num1 + num2;
@@ -26,17 +28,26 @@ function operate(operator, num1, num2) {
 
 function clear() {
   displayValue.textContent = "0";
-  currentNumberArray = [];
+  currentNumberArray1 = [];
+  currentNumberArray2 = [];
+  operand = "";
 }
 
-document.querySelector(".clear").addEventListener("click", () => clear());
+document.querySelector(".clear").addEventListener("click", clear);
 
 let numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    currentNumberArray.push(button.textContent);
-    console.log(currentNumberArray);
-    toDisplay(currentNumberArray.join(""));
+    if(operand == "") {
+      currentNumberArray1.push(button.textContent);
+      console.log(currentNumberArray1);
+      toDisplay(currentNumberArray1.join(""));
+    } else {
+      currentNumberArray2.push(button.textContent);
+      console.log(currentNumberArray2);
+      toDisplay(currentNumberArray2.join(""));
+
+    }
   })});
 
 function toDisplay(input) {
@@ -46,26 +57,32 @@ function toDisplay(input) {
 let operators = document.querySelectorAll(".operand")
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
-    let functionName = operator.classList[0]
-    let currentNumber = currentNumberArray.join("");
-    // operate(window[functionName](2,3))
+    functionName = operator.classList[0]
+    console.log(functionName);
     switch(functionName) {
       case "add":
         // console.log(currentNumber);
-        console.log(operate(add,currentNumber,3));
+        operand = "add";
+        // console.log(operate(add,currentNumber,3));
         break
       case "subtract":
-        console.log(operate(subtract,currentNumber,3));
+        operand = "subtract";
+        // console.log(operate(subtract,currentNumber,3));
         break
       case "multiply":
-        console.log(operate(multiply,currentNumber,3));
+        operand = "multiply";
+        // console.log(operate(multiply,currentNumber,3));
         break
       case "divide":
-        console.log(operate(divide,currentNumber,3));
+        operand = "divide";
+        // console.log(operate(divide,currentNumber,3));
         break
     }
   })});
 
-function equals() {
+let equal = document.querySelector(".equals");
+equal.addEventListener("click", equals);
 
+function equals() {
+  console.log("equal");
 }
