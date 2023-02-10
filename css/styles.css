@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+.calculator {
+  border: 2px solid black;
+  display: grid;
+  grid-template-columns: repeat(4, 80px);
+  grid-template-rows: repeat(5, 80px);
+}
+
+.button {
+  border: 1px solid black;
+  font-size: 20px;
+  line-height: 75px;
+  text-align: center;
+}
+
+.display {
+  grid-column: span 3;
+}
+
+.equals {
+  background-color: orange;
+}
