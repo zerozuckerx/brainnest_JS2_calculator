@@ -1,5 +1,10 @@
 body {
+  font-family: "Roboto", "sans-serif";
   margin: 0;
+}
+
+button {
+  background-color: #fff;
 }
 
 .calculator {
@@ -13,6 +18,13 @@ body {
   display: grid;
   grid-template-columns: repeat(4, 80px);
   grid-template-rows: repeat(5, 80px);
+}
+
+.display {
+  text-align: right;
+  font-size: 20px;
+  line-height: 75px;
+  padding-right: 10px;
 }
 
 .button {
