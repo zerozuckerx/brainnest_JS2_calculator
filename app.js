@@ -1,12 +1,19 @@
-//display
+//DISPLAY
 let displayValue = document.querySelector(".display");
-displayValue.textContent = "0";
-//num1,num2
+toDisplay("0");
+
+//VARIABLES
 let currentNumberArray1 = [];
 let currentNumberArray2 = [];
 let currentNumber1;
 let currentNumber2;
 let operand = "";
+
+
+//FUNCTIONS
+function toDisplay(input) {
+  displayValue.textContent = input;
+}
 
 function add(num1, num2) {
   return num1 + num2;
@@ -29,7 +36,7 @@ function operate(operator, num1, num2) {
 }
 
 function clear() {
-  displayValue.textContent = "0";
+  toDisplay("0");
   currentNumberArray1 = [];
   currentNumberArray2 = [];
   currentNumber1 = 0;
@@ -39,6 +46,7 @@ function clear() {
 
 document.querySelector(".clear").addEventListener("click", clear);
 
+//NUMBER BUTTONS ASSIGNMENT
 let numberButtons = document.querySelectorAll(".number");
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -57,10 +65,7 @@ numberButtons.forEach(button => {
     }
   })});
 
-function toDisplay(input) {
-  displayValue.textContent = input;
-}
-
+//OPERATOR BUTTONS ASSIGNMENT
 let operators = document.querySelectorAll(".operand")
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
@@ -82,15 +87,20 @@ operators.forEach(operator => {
     }
   })});
 
+//EQUAL BUTTON ASSIGNMENT & FUNCTIONALITY
 let equalButton = document.querySelector(".equals");
 equalButton.addEventListener("click", equals);
 
 function equals() {
   console.log("equal");
-  result = operate(operand, currentNumber1, currentNumber2);
-  currentNumber1 = result;
-  currentNumber2 = 0
-  currentNumberArray2 = [];
-  console.log(result);
-  toDisplay(Math.round(result*100)/100);
+  if(currentNumber2 == 0) {
+    toDisplay("ERROR DIV 0");
+  } else {
+    result = operate(operand, currentNumber1, currentNumber2);
+    currentNumber1 = result;
+    currentNumber2 = 0
+    currentNumberArray2 = [];
+    console.log(result);
+    toDisplay(Math.round(result*100)/100);
+  }
 }
