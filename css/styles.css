@@ -7,6 +7,10 @@ button {
   background-color: #fff;
 }
 
+button:active {
+  background-color: grey;
+}
+
 .calculator {
   display: flex;
   justify-content: center;

@@ -32,6 +32,8 @@ function clear() {
   displayValue.textContent = "0";
   currentNumberArray1 = [];
   currentNumberArray2 = [];
+  currentNumber1 = 0;
+  currentNumber2 = 0;
   operand = "";
 }
 
@@ -59,10 +61,6 @@ function toDisplay(input) {
   displayValue.textContent = input;
 }
 
-function displayResult() {
-  
-}
-
 let operators = document.querySelectorAll(".operand")
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
@@ -70,30 +68,29 @@ operators.forEach(operator => {
     console.log(functionName);
     switch(functionName) {
       case "add":
-        // console.log(currentNumber);
         operand = add;
-        // console.log(operate(add,currentNumber,3));
         break
       case "subtract":
         operand = subtract;
-        // console.log(operate(subtract,currentNumber,3));
         break
       case "multiply":
         operand = multiply;
-        // console.log(operate(multiply,currentNumber,3));
         break
       case "divide":
         operand = divide;
-        // console.log(operate(divide,currentNumber,3));
         break
     }
   })});
 
-let equal = document.querySelector(".equals");
-equal.addEventListener("click", equals);
+let equalButton = document.querySelector(".equals");
+equalButton.addEventListener("click", equals);
 
 function equals() {
   console.log("equal");
-  console.log(operate(operand, currentNumber1, currentNumber2));
-  displayResult();
+  result = operate(operand, currentNumber1, currentNumber2);
+  currentNumber1 = result;
+  currentNumber2 = 0
+  currentNumberArray2 = [];
+  console.log(result);
+  toDisplay(Math.round(result*100)/100);
 }
