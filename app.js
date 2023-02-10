@@ -93,8 +93,11 @@ equalButton.addEventListener("click", equals);
 
 function equals() {
   console.log("equal");
-  if(currentNumber2 == 0) {
+  if(operand == "") {
+    toDisplay("MISS OPT");
+  } else if(currentNumber2 == 0) {
     toDisplay("ERROR DIV 0");
+    setTimeout(clear, 1500);
   } else {
     result = operate(operand, currentNumber1, currentNumber2);
     currentNumber1 = result;
