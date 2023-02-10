@@ -11,6 +11,10 @@ button:active {
   background-color: grey;
 }
 
+footer {
+  text-align: center;
+}
+
 .calculator {
   display: flex;
   justify-content: center;
