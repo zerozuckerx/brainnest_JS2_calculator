@@ -1,7 +1,3 @@
-//DISPLAY
-let displayValue = document.querySelector(".display");
-toDisplay("0");
-
 //VARIABLES
 let currentNumberArray1 = [];
 let currentNumberArray2 = [];
@@ -9,44 +5,16 @@ let currentNumber1 = 0;
 let currentNumber2 = 0;
 let operand = "";
 
+//querySelectors
+const displayValue = document.querySelector(".display");
+const numberButtons = document.querySelectorAll(".number");
+const operators = document.querySelectorAll(".operand");
+const equalButton = document.querySelector(".equals");
+const clearButton = document.querySelector(".clear")
+
 //FUNCTIONS
-function toDisplay(input) {
-  displayValue.textContent = input;
-}
 
-function add(num1, num2) {
-  return num1 + num2;
-}
-
-function subtract(num1, num2) {
-  return num1 - num2;
-}
-
-function multiply(num1, num2) {
-  return num1 * num2;
-}
-
-function divide(num1, num2) {
-  return num1 / num2;
-}
-
-function operate(operator, num1, num2) {
-  return operator(num1, num2);
-}
-
-function clear() {
-  toDisplay("0");
-  currentNumberArray1 = [];
-  currentNumberArray2 = [];
-  currentNumber1 = 0;
-  currentNumber2 = 0;
-  operand = "";
-}
-
-document.querySelector(".clear").addEventListener("click", clear);
-
-//NUMBER BUTTONS ASSIGNMENT
-let numberButtons = document.querySelectorAll(".number");
+//NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
     if(operand == "") {
@@ -61,9 +29,12 @@ numberButtons.forEach(button => {
       toDisplay(currentNumber2);
     }
   })});
+  
+function toDisplay(input) {
+  displayValue.textContent = input;
+}
 
-//OPERATOR BUTTONS ASSIGNMENT
-let operators = document.querySelectorAll(".operand")
+//OPERATOR BUTTONS ASSIGNMENT & FUNCTIONS
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
     functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
@@ -91,8 +62,27 @@ operators.forEach(operator => {
     }
   })});
 
-//EQUAL BUTTON ASSIGNMENT & FUNCTIONALITY
-let equalButton = document.querySelector(".equals");
+function add(num1, num2) {
+  return num1 + num2;
+}
+
+function subtract(num1, num2) {
+  return num1 - num2;
+}
+
+function multiply(num1, num2) {
+  return num1 * num2;
+}
+
+function divide(num1, num2) {
+  return num1 / num2;
+}
+
+function operate(operator, num1, num2) {
+  return operator(num1, num2);
+}
+
+//EQUAL BUTTON ASSIGNMENT & FUNCTION
 equalButton.addEventListener("click", equals);
 
 function equals() {
@@ -110,6 +100,18 @@ function equals() {
     currentNumberArray2 = [];
     console.log(result);
   }
+}
+
+//CLEAR BUTTON ASSIGNMENT & FUNCTION
+clearButton.addEventListener("click", clear);
+
+function clear() {
+  toDisplay("0");
+  currentNumberArray1 = [];
+  currentNumberArray2 = [];
+  currentNumber1 = 0;
+  currentNumber2 = 0;
+  operand = "";
 }
 
 // function result() {
