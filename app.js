@@ -11,6 +11,8 @@ const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operand");
 const equalButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
+const rootButton = document.querySelector(".sqrt");
+const percentButton = document.querySelector(".percent");
 const undoButton = document.querySelector(".undo");
 
 //FUNCTIONS
@@ -20,16 +22,20 @@ numberButtons.forEach(button => {
   button.addEventListener("click", () => {
     if(operand == "") {
       currentNumberArray1.push(button.textContent); //add number from HTML to array so you can add more than 1 digit numbers
-      currentNumber1 = parseFloat(currentNumberArray1.join("")); //join numbers from array together
+      currentNumber1 = arrayToNumber(currentNumberArray1);
       console.log(currentNumber1);
-      toDisplay(currentNumber1); //show on display
+      toDisplay(currentNumber1);
     } else {
       currentNumberArray2.push(button.textContent);
-      currentNumber2 = parseFloat(currentNumberArray2.join(""));
+      currentNumber2 = arrayToNumber(currentNumberArray2);
       console.log(currentNumber2);
       toDisplay(currentNumber2);
     }
   })});
+
+function arrayToNumber(arr) {
+  return parseFloat(arr.join(""));
+}
 
 function toDisplay(input) {
   displayValue.textContent = input;
@@ -41,7 +47,7 @@ operators.forEach(operator => {
     functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
     if(currentNumber1 != 0 && currentNumber2 != 0 && operand != "") {
       result = operate(operand, currentNumber1, currentNumber2);
-      toDisplay(Math.round(result*100)/100);
+      toDisplay(Math.round(result*100000)/100000);
       currentNumber1 = result;
       currentNumber2 = 0
       currentNumberArray2 = [];
@@ -95,7 +101,7 @@ function equals() {
     setTimeout(clear, 1500);
   } else {
     result = operate(operand, currentNumber1, currentNumber2);
-    toDisplay(Math.round(result*100)/100);
+    toDisplay(Math.round(result*100000)/100000);
     currentNumber1 = result;
     currentNumber2 = 0
     currentNumberArray2 = [];
@@ -121,11 +127,11 @@ undoButton.addEventListener("click", undo);
 function undo() {
   if (currentNumber2 == 0) {
     currentNumberArray1.pop();
-    currentNumber1 = parseFloat(currentNumberArray1.join(""));
+    currentNumber1 = arrayToNumber(currentNumberArray1);
     toDisplay(currentNumber1);
   } else {
     currentNumberArray2.pop();
-    currentNumber2 = parseFloat(currentNumberArray2.join(""));
+    currentNumber2 = arrayToNumber(currentNumberArray2);
     toDisplay(currentNumber1);
   }
   console.log(currentNumberArray1, currentNumberArray2);

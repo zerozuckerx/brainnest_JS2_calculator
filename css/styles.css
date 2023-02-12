@@ -30,10 +30,10 @@ footer {
 
 .display {
   background-color: lightgreen;
-  border: 3px solid black;
+  border-bottom: 2px solid black;
   font-size: 30px;
   font-weight: 500;
-  grid-column: span 2;
+  grid-column: span 4;
   line-height: 75px;
   padding-right: 31px;
   text-align: right;
@@ -53,7 +53,8 @@ footer {
 }
 
 .undo {
-  font-size: 40px;
+  font-size: 30px;
+  grid-column: span 2;
 }
 
 .clear {
@@ -62,4 +63,5 @@ footer {
 
 .equals {
   background-color: orange;
+  grid-column: span 2;
 }
