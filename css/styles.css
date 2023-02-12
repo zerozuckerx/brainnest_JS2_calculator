@@ -33,7 +33,7 @@ footer {
   border: 3px solid black;
   font-size: 30px;
   font-weight: 500;
-  grid-column: span 3;
+  grid-column: span 2;
   line-height: 75px;
   padding-right: 31px;
   text-align: right;
@@ -50,6 +50,10 @@ footer {
   font-weight: 500;
   line-height: 75px;
   text-align: center;
+}
+
+.undo {
+  font-size: 40px;
 }
 
 .clear {

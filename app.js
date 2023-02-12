@@ -11,6 +11,7 @@ const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operand");
 const equalButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
+const undoButton = document.querySelector(".undo");
 
 //FUNCTIONS
 
@@ -29,7 +30,7 @@ numberButtons.forEach(button => {
       toDisplay(currentNumber2);
     }
   })});
-  
+
 function toDisplay(input) {
   displayValue.textContent = input;
 }
@@ -112,6 +113,22 @@ function clear() {
   currentNumber1 = 0;
   currentNumber2 = 0;
   operand = "";
+}
+
+//UNDO BUTTON ASSIGNMENT
+undoButton.addEventListener("click", undo);
+
+function undo() {
+  if (currentNumber2 == 0) {
+    currentNumberArray1.pop();
+    currentNumber1 = parseFloat(currentNumberArray1.join(""));
+    toDisplay(currentNumber1);
+  } else {
+    currentNumberArray2.pop();
+    currentNumber2 = parseFloat(currentNumberArray2.join(""));
+    toDisplay(currentNumber1);
+  }
+  console.log(currentNumberArray1, currentNumberArray2);
 }
 
 // function result() {
