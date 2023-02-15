@@ -96,7 +96,9 @@ function equals() {
     toDisplay("MISS OPT");
   } else if(currentNumber2 == 0) {
     toDisplay("ERROR DIV 0");
-    setTimeout(clear, 1500);
+    setTimeout(function() {
+      toDisplay(currentNumber1);
+    }, 1500);
   } else {
     result = operate(operand, currentNumber1, currentNumber2);
     toDisplay(Math.round(result*100000)/100000);
