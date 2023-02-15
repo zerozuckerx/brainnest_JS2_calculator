@@ -11,8 +11,6 @@ const numberButtons = document.querySelectorAll(".number");
 const operators = document.querySelectorAll(".operand");
 const equalButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
-const rootButton = document.querySelector(".sqrt");
-const percentButton = document.querySelector(".percent");
 const undoButton = document.querySelector(".undo");
 
 //FUNCTIONS
@@ -125,17 +123,34 @@ function clear() {
 undoButton.addEventListener("click", undo);
 
 function undo() {
-  if (currentNumber2 == 0) {
+  if(currentNumber1 == 0 && currentNumber2 == 0) {
+    console.log("both 0");
+    return;
+  } else if(!currentNumber2) {
     currentNumberArray1.pop();
     currentNumber1 = arrayToNumber(currentNumberArray1);
+    console.log("normal pop num1");
+      if(isNaN(currentNumber1)) {
+        console.log("NaN triggered num1");
+        currentNumber1 = 0;
+        return toDisplay(currentNumber1);
+      }
+    currentNumber1 = arrayToNumber(currentNumberArray1);
+    console.log(currentNumber1);
     toDisplay(currentNumber1);
   } else {
-    currentNumberArray2.pop();
-    currentNumber2 = arrayToNumber(currentNumberArray2);
-    toDisplay(currentNumber1);
+      currentNumberArray2.pop();
+      currentNumber2 = arrayToNumber(currentNumberArray2);
+      console.log("normal pop num2");
+      if(isNaN(currentNumber2)) {
+        console.log("NaN triggered num2");
+        currentNumber2 = 0;
+      return toDisplay(currentNumber1);
   }
   console.log(currentNumberArray1, currentNumberArray2);
 }
+}
+
 
 // function result() {
 //   result = operate(operand, currentNumber1, currentNumber2);
