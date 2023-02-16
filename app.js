@@ -1,4 +1,4 @@
-//VARIABLES
+// ***VARIABLES***
 let currentNumberArray1 = [];
 let currentNumberArray2 = [];
 let currentNumber1 = 0;
@@ -14,7 +14,7 @@ const operators = document.querySelectorAll(".operand");
 const numberButtons = document.querySelectorAll(".number");
 const floatingPointButton = document.querySelector(".floating-point")
 
-//FUNCTIONS
+// ***FUNCTIONS***
 
 //NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
 numberButtons.forEach(button => {
