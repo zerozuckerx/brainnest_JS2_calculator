@@ -7,11 +7,12 @@ let operand = "";
 
 //querySelectors
 const displayValue = document.querySelector(".display");
-const numberButtons = document.querySelectorAll(".number");
-const operators = document.querySelectorAll(".operand");
-const equalButton = document.querySelector(".equals");
 const clearButton = document.querySelector(".clear")
 const undoButton = document.querySelector(".undo");
+const equalButton = document.querySelector(".equals");
+const operators = document.querySelectorAll(".operand");
+const numberButtons = document.querySelectorAll(".number");
+const floatingPointButton = document.querySelector(".floating-point")
 
 //FUNCTIONS
 
@@ -152,14 +153,13 @@ function undo() {
   }
 }
 
-//not working yet //use .includes() for stopping after 1 .
-// let floatingPointButton = document.querySelector(".floating-point")
-// floatingPointButton.addEventListener("click", () => {
-//   if(currentNumberArray1.length != 0) {
-//     currentNumberArray1.push(".");
-//     console.log(currentNumberArray1);
-//     toDisplay(currentNumberArray1.join(""));
-//   } else {
-//     console.log("nope");
-//   }
-// })
+//use .includes() for stopping after 1 .
+floatingPointButton.addEventListener("click", floatingPoint);
+
+function floatingPoint() {
+  currentNumberArray1.push(".");
+  console.log(currentNumber1, currentNumberArray1);
+  currentNumber1 = arrayToNumber(currentNumberArray1);
+  console.log(currentNumber1, currentNumberArray1);
+  toDisplay(currentNumber1);
+}
