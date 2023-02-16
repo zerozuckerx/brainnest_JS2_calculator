@@ -167,15 +167,23 @@ function undo() {
 floatingPointButton.addEventListener("click", floatingPoint);
 
 function floatingPoint() {
-  if(!currentNumberArray1.includes(".")) {
-    currentNumberArray1.push(".");
-    currentNumber1 = currentNumberArray1.join("");
-    // currentNumber1 = currentNumberArray1.reduce((nextDigit, initialValue) => {
-    //   initialValue + nextDigit
-    // },0);
-    console.log(currentNumber1, currentNumberArray1);
-    toDisplay(currentNumber1);
+  if(!currentNumber2) {
+    if(!currentNumberArray1.includes(".")) {
+      currentNumberArray1.push(".");
+      currentNumber1 = currentNumberArray1.join("");
+      console.log(currentNumber1, currentNumberArray1);
+      toDisplay(currentNumber1);
+    } else {
+      return;
+    }
   } else {
-    return;
+    if(!currentNumberArray2.includes(".")) {
+      currentNumberArray2.push(".");
+      currentNumber2 = currentNumberArray2.join("");
+      console.log(currentNumber1, currentNumberArray1);
+      toDisplay(currentNumber2);
+    } else {
+      return;
+    }
   }
 }
