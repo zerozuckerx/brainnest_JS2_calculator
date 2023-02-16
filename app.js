@@ -4,6 +4,7 @@ let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
 let operand = "";
+let numberDisplay1 = ""
 
 //querySelectors
 const displayValue = document.querySelector(".display");
@@ -35,6 +36,12 @@ numberButtons.forEach(button => {
 function arrayToNumber(arr) {
   return parseFloat(arr.join(""));
 }
+
+// function arrayToString(arr) {
+//   arr.reduce((nextDigit, initialValue) => {
+//     initialValue + nextDigit
+//   },0);
+// }
 
 function toDisplay(input) {
   displayValue.textContent = input;
@@ -160,9 +167,15 @@ function undo() {
 floatingPointButton.addEventListener("click", floatingPoint);
 
 function floatingPoint() {
-  currentNumberArray1.push(".");
-  console.log(currentNumber1, currentNumberArray1);
-  currentNumber1 = arrayToNumber(currentNumberArray1);
-  console.log(currentNumber1, currentNumberArray1);
-  toDisplay(currentNumber1);
+  if(!currentNumberArray1.includes(".")) {
+    currentNumberArray1.push(".");
+    currentNumber1 = currentNumberArray1.join("");
+    // currentNumber1 = currentNumberArray1.reduce((nextDigit, initialValue) => {
+    //   initialValue + nextDigit
+    // },0);
+    console.log(currentNumber1, currentNumberArray1);
+    toDisplay(currentNumber1);
+  } else {
+    return;
+  }
 }
