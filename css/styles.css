@@ -54,7 +54,7 @@ footer {
 
 .undo {
   font-size: 30px;
-  grid-column: span 2;
+  /* grid-column: span 2; */
 }
 
 .clear {
