@@ -153,16 +153,15 @@ function undo() {
 }
 }
 
+function result() {
+  result = operate(operand, currentNumber1, currentNumber2);
+  toDisplay(Math.round(result*100)/100);
+  currentNumber1 = result;
+  currentNumber2 = 0
+  currentNumberArray2 = [];
+}
 
-// function result() {
-//   result = operate(operand, currentNumber1, currentNumber2);
-//   toDisplay(Math.round(result*100)/100);
-//   currentNumber1 = result;
-//   currentNumber2 = 0
-//   currentNumberArray2 = [];
-// }
-
-//not working yet
+//not working yet //use .includes() for stopping after 1 .
 // let floatingPointButton = document.querySelector(".floating-point")
 // floatingPointButton.addEventListener("click", () => {
 //   if(currentNumberArray1.length != 0) {
