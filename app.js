@@ -98,12 +98,15 @@ equalButton.addEventListener("click", equals);
 function equals() {
   console.log("equal");
   if(operand == "") {
-    toDisplay("MISS OPT");
-  } else if(currentNumber2 == 0) {
-    toDisplay("ERROR DIV 0");
+    toDisplay("ERROR: MISS OP");
     setTimeout(() => {
       toDisplay(currentNumber1);
-    }, 1000);
+    }, 1200);
+  } else if(currentNumber2 == 0) {
+    toDisplay("ERROR: DIV 0");
+    setTimeout(() => {
+      toDisplay(currentNumber1);
+    }, 1200);
   } else {
     result();
   }
