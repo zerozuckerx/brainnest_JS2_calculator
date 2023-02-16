@@ -44,11 +44,7 @@ operators.forEach(operator => {
   operator.addEventListener("click", () => {
     functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
     if(currentNumber1 != 0 && currentNumber2 != 0 && operand != "") {
-      result = operate(operand, currentNumber1, currentNumber2);
-      toDisplay(Math.round(result*100000)/100000);
-      currentNumber1 = result;
-      currentNumber2 = 0
-      currentNumberArray2 = [];
+      result();
     }
     console.log(functionName);
     switch(functionName) {
@@ -66,6 +62,14 @@ operators.forEach(operator => {
         break
     }
   })});
+
+function result() {
+  let result = operate(operand, currentNumber1, currentNumber2);
+  toDisplay(Math.round(result*100)/100);
+  currentNumber1 = result;
+  currentNumber2 = 0
+  currentNumberArray2 = [];
+}
 
 function add(num1, num2) {
   return num1 + num2;
@@ -100,12 +104,7 @@ function equals() {
       toDisplay(currentNumber1);
     }, 1000);
   } else {
-    result = operate(operand, currentNumber1, currentNumber2);
-    toDisplay(Math.round(result*100000)/100000);
-    currentNumber1 = result;
-    currentNumber2 = 0
-    currentNumberArray2 = [];
-    console.log(result);
+    result();
   }
 }
 
@@ -148,17 +147,9 @@ function undo() {
         console.log("NaN triggered num2");
         currentNumber2 = 0;
       return toDisplay(currentNumber1);
+      }
+    console.log(currentNumberArray1, currentNumberArray2);
   }
-  console.log(currentNumberArray1, currentNumberArray2);
-}
-}
-
-function result() {
-  result = operate(operand, currentNumber1, currentNumber2);
-  toDisplay(Math.round(result*100)/100);
-  currentNumber1 = result;
-  currentNumber2 = 0
-  currentNumberArray2 = [];
 }
 
 //not working yet //use .includes() for stopping after 1 .
