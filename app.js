@@ -4,7 +4,7 @@ let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
 let operand = "";
-let displayChain = ""
+let displayChain = []
 
 //querySelectors
 const displayValue = document.querySelector(".display");
@@ -23,11 +23,13 @@ numberButtons.forEach(button => {
     if(operand == "") {
       currentNumberArray1.push(button.textContent); //add number from HTML to array so you can add more than 1 digit numbers
       currentNumber1 = arrayToNumber(currentNumberArray1);
+      displayChain.push(currentNumber1);
       console.log(currentNumber1);
-      toDisplay(currentNumber1);
+      toDisplay();
     } else {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
+      displayChain.push(currentNumber2);
       console.log(currentNumber2);
       toDisplay(currentNumber2);
     }
@@ -37,8 +39,8 @@ function arrayToNumber(arr) {
   return parseFloat(arr.join(""));
 }
 
-function toDisplay(input) {
-  displayValue.textContent = input;
+function toDisplay() {
+  displayValue.textContent = displayChain.join("");
 }
 
 //OPERATOR BUTTONS ASSIGNMENT & FUNCTIONS
@@ -52,24 +54,30 @@ operators.forEach(operator => {
     switch(functionName) {
       case "add":
         operand = add;
-        currentNumberArray1.push("+");
-        currentNumber1 = currentNumberArray1.join("");
-        toDisplay(currentNumber1);
+        displayChain.push(" + ");
+        toDisplay();
         break
       case "subtract":
         operand = subtract;
+        displayChain.push(" - ");
+        toDisplay();
         break
       case "multiply":
         operand = multiply;
+        displayChain.push(" * ");
+        toDisplay();
         break
       case "divide":
         operand = divide;
+        displayChain.push(" / ");
+        toDisplay();
         break
     }
   })});
 
 function result() {
   let result = operate(operand, currentNumber1, currentNumber2);
+  console.log(result);
   toDisplay(Math.round(result*100)/100);
   currentNumber1 = result;
   currentNumber2 = 0
@@ -120,12 +128,13 @@ function equals() {
 clearButton.addEventListener("click", clear);
 
 function clear() {
-  toDisplay("0");
   currentNumberArray1 = [];
   currentNumberArray2 = [];
   currentNumber1 = 0;
   currentNumber2 = 0;
   operand = "";
+  displayChain = [0];
+  toDisplay();
 }
 
 //UNDO BUTTON ASSIGNMENT
