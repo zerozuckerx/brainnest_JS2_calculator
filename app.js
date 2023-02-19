@@ -11,7 +11,7 @@ const displayValue = document.querySelector(".display");
 const clearButton = document.querySelector(".clear")
 const undoButton = document.querySelector(".undo");
 const equalButton = document.querySelector(".equals");
-const operators = document.querySelectorAll(".operand");
+const operatorButtons = document.querySelectorAll(".operand");
 const numberButtons = document.querySelectorAll(".number");
 const floatingPointButton = document.querySelector(".floating-point")
 
@@ -48,13 +48,13 @@ function arrayToNumber(arr) { //arr -> string -> floating number
 
 function toDisplay() {
   console.log(displayChain);
-  displayValue.textContent = displayChain.join("").slice(0,15);
+  displayValue.textContent = displayChain.join("").slice(0,16);
 }
 
 //OPERATOR BUTTONS ASSIGNMENT & FUNCTIONS
-operators.forEach(operator => {
-  operator.addEventListener("click", () => {
-    functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
+operatorButtons.forEach(operatorButton => {
+  operatorButton.addEventListener("click", () => {
+    functionName = operatorButton.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
     if(currentNumber1 && currentNumber2 && operand != "") {
       result();
     }
@@ -63,26 +63,22 @@ operators.forEach(operator => {
       case "add":
         operand = add;
         displayChain.push(" + ");
-        toDisplay()
         break
       case "subtract":
         operand = subtract;
         displayChain.push(" - ");
-        toDisplay()
         break
       case "multiply":
         operand = multiply;
         displayChain.push(" * ");
-        toDisplay()
         break
       case "divide":
         operand = divide;
         displayChain.push(" / ");
-        toDisplay()
         break
     }
-    // toDisplay()
-  })});
+  toDisplay()
+})});
 
 function result() {
   let result = operate(operand, currentNumber1, currentNumber2);
@@ -90,6 +86,7 @@ function result() {
   displayChain = [result];
   currentNumber2 = 0
   currentNumberArray2 = [];
+  operand = "";
   console.log(result);
   toDisplay();
 }
@@ -120,16 +117,27 @@ equalButton.addEventListener("click", equals);
 function equals() {
   console.log("equal");
   if(operand == "") {
-    toDisplay("ERROR: MISS OP");
+    displayChain = ["MISSING OPERATOR"];
+    toDisplay();
     setTimeout(() => {
-      toDisplay(currentNumber1);
+      displayChain = [currentNumber1];
+      toDisplay();
     }, 1200);
-  } else if(currentNumber2 == 0) {
-    toDisplay("ERROR: DIV 0");
-    setTimeout(() => {
-      toDisplay(currentNumber1);
-    }, 1200);
-  } else {
+  } else if(currentNumber2 == 0 && operand == divide) {
+      displayChain = ["DIVISION BY 0"];
+      toDisplay();
+      setTimeout(() => {
+        displayChain = [currentNumber1 + " / "];
+        toDisplay();
+      }, 1200);
+  } else if(!currentNumber2 && operand) {
+      displayChain = ["ERROR: NUMBER 2"];
+      toDisplay();
+      setTimeout(() => {
+        displayChain = [currentNumber1 + operand.name];
+        toDisplay();
+      }, 1400);
+    } else {
     result();
   }
 }
