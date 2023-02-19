@@ -4,7 +4,7 @@ let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
 let displayChain = [0];
-let operand = "";
+let operand;
 
 // ***querySelectors***
 const displayValue = document.querySelector(".display");
@@ -19,12 +19,12 @@ const floatingPointButton = document.querySelector(".floating-point")
 
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if(operand == "") { //operand empty
+    if(operand == null) { //operand empty
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
-    } else if(operand != "" && typeof displayChain[displayChain.length - 1] == "number") {
+    } else if(operand && typeof displayChain[displayChain.length - 1] == "number") {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
       displayChain[displayChain.length - 1] = currentNumber2;
@@ -55,7 +55,7 @@ function toDisplay() {
 operatorButtons.forEach(operatorButton => {
   operatorButton.addEventListener("click", () => {
     functionName = operatorButton.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
-    if(currentNumber1 && currentNumber2 && operand != "") {
+    if(currentNumber1 && currentNumber2 && operand) {
       result();
     }
     console.log(functionName);
@@ -86,7 +86,7 @@ function result() {
   displayChain = [result];
   currentNumber2 = 0
   currentNumberArray2 = [];
-  operand = "";
+  operand = null;
   console.log(result);
   toDisplay();
 }
@@ -116,7 +116,7 @@ equalButton.addEventListener("click", equals);
 
 function equals() {
   console.log("equal");
-  if(operand == "") {
+  if(!operand) {
     displayChain = ["MISSING OPERATOR"];
     toDisplay();
     setTimeout(() => {
@@ -134,7 +134,7 @@ function equals() {
       displayChain = ["ERROR: NUMBER 2"];
       toDisplay();
       setTimeout(() => {
-        displayChain = [currentNumber1 + operand.name];
+        displayChain = [currentNumber1];
         toDisplay();
       }, 1400);
     } else {
@@ -150,8 +150,8 @@ function clear() {
   currentNumberArray2 = [];
   currentNumber1 = 0;
   currentNumber2 = 0;
-  operand = "";
   displayChain = [0];
+  operand = null;
   toDisplay();
   console.log("clear");
 }

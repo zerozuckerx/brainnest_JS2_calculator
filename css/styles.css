@@ -16,6 +16,7 @@ footer {
 }
 
 .calculator {
+  border-radius: 30px;
   display: flex;
   justify-content: center;
   margin-top: 200px;
@@ -23,7 +24,9 @@ footer {
 
 .calculator-grid {
   border: 3px solid black;
+  border-radius: inherit;
   display: grid;
+  overflow: hidden;
   grid-template-columns: repeat(4, 80px);
   grid-template-rows: repeat(5, 80px);
 }
@@ -35,6 +38,7 @@ footer {
   font-weight: 500;
   grid-column: span 4;
   line-height: 75px;
+  overflow: hidden;
   padding-right: 30px;
   text-align: right;
 }
