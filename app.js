@@ -4,7 +4,7 @@ let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
 let operand = "";
-let numberDisplay1 = ""
+let displayChain = ""
 
 //querySelectors
 const displayValue = document.querySelector(".display");
@@ -37,12 +37,6 @@ function arrayToNumber(arr) {
   return parseFloat(arr.join(""));
 }
 
-// function arrayToString(arr) {
-//   arr.reduce((nextDigit, initialValue) => {
-//     initialValue + nextDigit
-//   },0);
-// }
-
 function toDisplay(input) {
   displayValue.textContent = input;
 }
@@ -58,6 +52,9 @@ operators.forEach(operator => {
     switch(functionName) {
       case "add":
         operand = add;
+        currentNumberArray1.push("+");
+        currentNumber1 = currentNumberArray1.join("");
+        toDisplay(currentNumber1);
         break
       case "subtract":
         operand = subtract;
