@@ -3,7 +3,6 @@ let currentNumberArray1 = [];
 let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
-// let result;
 let operand = "";
 let displayChain = [0]
 
@@ -22,34 +21,33 @@ const floatingPointButton = document.querySelector(".floating-point")
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
     if(operand == "" && !displayChain[0]) { //check if 0 is displayed, if so: replace 0 with clicked number
-      console.log("displayChain[0] is false");
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
       toDisplay();
     } else if(operand == "" && displayChain[0]) {
-      console.log("displayChain[0] is true");
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
       toDisplay();
-    } else if(operand != "") {
+    } else if(operand != "" && typeof displayChain[displayChain.length - 1] == "number") {
+      currentNumberArray2.push(button.textContent);
+      currentNumber2 = arrayToNumber(currentNumberArray2);
+      console.log(displayChain);
+      displayChain[displayChain.length - 1] = currentNumber2;
+      console.log(displayChain);
+      console.log(currentNumber2);
+      toDisplay();
+    } else {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
       displayChain[displayChain.length] = currentNumber2;
       console.log(currentNumber2);
       toDisplay();
-    // } else {
-    //   currentNumberArray2.push(button.textContent);
-    //   currentNumber2 = arrayToNumber(currentNumberArray2);
-    //   displayChain.push(currentNumber2);
-    //   console.log(currentNumber2);
-    //   toDisplay(currentNumber2);
-    // }
-    // console.log(displayChain);
-  }})});
+    }
+  })});
 
 function arrayToNumber(arr) {
   return parseFloat(arr.join(""));
