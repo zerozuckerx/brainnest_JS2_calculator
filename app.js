@@ -4,9 +4,9 @@ let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
 let operand = "";
-let displayChain = [0]
+let displayChain = [0];
 
-//querySelectors
+// ***querySelector variables
 const displayValue = document.querySelector(".display");
 const clearButton = document.querySelector(".clear")
 const undoButton = document.querySelector(".undo");
@@ -25,28 +25,23 @@ numberButtons.forEach(button => {
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
-      toDisplay();
     } else if(operand == "" && displayChain[0]) {
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
-      toDisplay();
     } else if(operand != "" && typeof displayChain[displayChain.length - 1] == "number") {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
-      console.log(displayChain);
       displayChain[displayChain.length - 1] = currentNumber2;
-      console.log(displayChain);
       console.log(currentNumber2);
-      toDisplay();
     } else {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
       displayChain[displayChain.length] = currentNumber2;
       console.log(currentNumber2);
-      toDisplay();
     }
+    toDisplay();
   })});
 
 function arrayToNumber(arr) {
@@ -94,7 +89,6 @@ function result() {
   console.log(result);
   displayChain = [result];
   toDisplay();
-  console.log(displayChain);
   currentNumber1 = result;
   currentNumber2 = 0
   currentNumberArray2 = [];
@@ -151,6 +145,7 @@ function clear() {
   operand = "";
   displayChain = [0];
   toDisplay();
+  console.log("clear");
 }
 
 //UNDO BUTTON ASSIGNMENT
