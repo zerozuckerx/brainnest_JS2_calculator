@@ -18,14 +18,30 @@ const floatingPointButton = document.querySelector(".floating-point")
 // ***FUNCTIONS***
 
 //NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
+// numberButtons.forEach(button => {
+//   button.addEventListener("click", () => {
+//     if(operand == "") { //operand empty
+//       currentNumberArray1.push(button.textContent);
+//       currentNumber1 = arrayToNumber(currentNumberArray1);
+//       displayChain[0] = currentNumber1;
+//       console.log(currentNumber1);
+//     } else if(operand != "" && typeof displayChain[displayChain.length - 1] == "number") {
+//       currentNumberArray2.push(button.textContent);
+//       currentNumber2 = arrayToNumber(currentNumberArray2);
+//       displayChain[displayChain.length - 1] = currentNumber2;
+//       console.log(currentNumber2);
+//     } else {
+//       currentNumberArray2.push(button.textContent);
+//       currentNumber2 = arrayToNumber(currentNumberArray2);
+//       displayChain[displayChain.length] = currentNumber2;
+//       console.log(currentNumber2);
+//     }
+//     toDisplay();
+//   })});
+
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if(operand == "" && !displayChain[0]) { //check if 0 is displayed, if so: replace 0 with clicked number
-      currentNumberArray1.push(button.textContent);
-      currentNumber1 = arrayToNumber(currentNumberArray1);
-      displayChain[0] = currentNumber1;
-      console.log(currentNumber1);
-    } else if(operand == "" && displayChain[0]) {
+    if(operand == "") { //operand empty
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
@@ -35,10 +51,14 @@ numberButtons.forEach(button => {
       currentNumber2 = arrayToNumber(currentNumberArray2);
       displayChain[displayChain.length - 1] = currentNumber2;
       console.log(currentNumber2);
-    } else {
+    } else { //operand populated
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
-      displayChain[displayChain.length] = currentNumber2;
+      if (typeof displayChain[displayChain.length - 1] == "number") {
+        displayChain[displayChain.length - 1] = currentNumber2;
+      } else {
+        displayChain[displayChain.length] = currentNumber2;
+      }
       console.log(currentNumber2);
     }
     toDisplay();
