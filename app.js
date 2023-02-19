@@ -3,6 +3,7 @@ let currentNumberArray1 = [];
 let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
+// let result;
 let operand = "";
 let displayChain = []
 
@@ -20,10 +21,18 @@ const floatingPointButton = document.querySelector(".floating-point")
 //NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if(operand == "") {
-      currentNumberArray1.push(button.textContent); //add number from HTML to array so you can add more than 1 digit numbers
+    if(operand == "" && !displayChain[0]) {
+      console.log("not");
+      currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
-      displayChain.push(currentNumber1);
+      displayChain[0] = currentNumber1;
+      console.log(currentNumber1);
+      toDisplay();
+    } else if(operand == "" && displayChain[0]) {
+      console.log("true");
+      currentNumberArray1.push(button.textContent);
+      currentNumber1 = arrayToNumber(currentNumberArray1);
+      displayChain[0] = currentNumber1;
       console.log(currentNumber1);
       toDisplay();
     } else {
@@ -33,6 +42,7 @@ numberButtons.forEach(button => {
       console.log(currentNumber2);
       toDisplay(currentNumber2);
     }
+    console.log(displayChain);
   })});
 
 function arrayToNumber(arr) {
@@ -76,9 +86,11 @@ operators.forEach(operator => {
   })});
 
 function result() {
-  let result = operate(operand, currentNumber1, currentNumber2);
+  result = operate(operand, currentNumber1, currentNumber2);
   console.log(result);
-  toDisplay(Math.round(result*100)/100);
+  displayChain = [result];
+  toDisplay();
+  console.log(displayChain);
   currentNumber1 = result;
   currentNumber2 = 0
   currentNumberArray2 = [];
