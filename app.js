@@ -3,10 +3,10 @@ let currentNumberArray1 = [];
 let currentNumberArray2 = [];
 let currentNumber1 = 0;
 let currentNumber2 = 0;
-let operand = "";
 let displayChain = [0];
+let operand = "";
 
-// ***querySelector variables
+// ***querySelectors***
 const displayValue = document.querySelector(".display");
 const clearButton = document.querySelector(".clear")
 const undoButton = document.querySelector(".undo");
@@ -16,28 +16,6 @@ const numberButtons = document.querySelectorAll(".number");
 const floatingPointButton = document.querySelector(".floating-point")
 
 // ***FUNCTIONS***
-
-//NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
-// numberButtons.forEach(button => {
-//   button.addEventListener("click", () => {
-//     if(operand == "") { //operand empty
-//       currentNumberArray1.push(button.textContent);
-//       currentNumber1 = arrayToNumber(currentNumberArray1);
-//       displayChain[0] = currentNumber1;
-//       console.log(currentNumber1);
-//     } else if(operand != "" && typeof displayChain[displayChain.length - 1] == "number") {
-//       currentNumberArray2.push(button.textContent);
-//       currentNumber2 = arrayToNumber(currentNumberArray2);
-//       displayChain[displayChain.length - 1] = currentNumber2;
-//       console.log(currentNumber2);
-//     } else {
-//       currentNumberArray2.push(button.textContent);
-//       currentNumber2 = arrayToNumber(currentNumberArray2);
-//       displayChain[displayChain.length] = currentNumber2;
-//       console.log(currentNumber2);
-//     }
-//     toDisplay();
-//   })});
 
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
@@ -64,19 +42,20 @@ numberButtons.forEach(button => {
     toDisplay();
   })});
 
-function arrayToNumber(arr) {
+function arrayToNumber(arr) { //arr -> string -> floating number
   return parseFloat(arr.join(""));
 }
 
 function toDisplay() {
-  displayValue.textContent = displayChain.join("");
+  console.log(displayChain);
+  displayValue.textContent = displayChain.join("").slice(0,15);
 }
 
 //OPERATOR BUTTONS ASSIGNMENT & FUNCTIONS
 operators.forEach(operator => {
   operator.addEventListener("click", () => {
     functionName = operator.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
-    if(currentNumber1 != 0 && currentNumber2 != 0 && operand != "") {
+    if(currentNumber1 && currentNumber2 && operand != "") {
       result();
     }
     console.log(functionName);
@@ -84,34 +63,35 @@ operators.forEach(operator => {
       case "add":
         operand = add;
         displayChain.push(" + ");
-        toDisplay();
+        toDisplay()
         break
       case "subtract":
         operand = subtract;
         displayChain.push(" - ");
-        toDisplay();
+        toDisplay()
         break
       case "multiply":
         operand = multiply;
         displayChain.push(" * ");
-        toDisplay();
+        toDisplay()
         break
       case "divide":
         operand = divide;
         displayChain.push(" / ");
-        toDisplay();
+        toDisplay()
         break
     }
+    // toDisplay()
   })});
 
 function result() {
   let result = operate(operand, currentNumber1, currentNumber2);
-  console.log(result);
-  displayChain = [result];
-  toDisplay();
   currentNumber1 = result;
+  displayChain = [result];
   currentNumber2 = 0
   currentNumberArray2 = [];
+  console.log(result);
+  toDisplay();
 }
 
 function add(num1, num2) {
