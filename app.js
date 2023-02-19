@@ -5,7 +5,7 @@ let currentNumber1 = 0;
 let currentNumber2 = 0;
 // let result;
 let operand = "";
-let displayChain = []
+let displayChain = [0]
 
 //querySelectors
 const displayValue = document.querySelector(".display");
@@ -21,29 +21,35 @@ const floatingPointButton = document.querySelector(".floating-point")
 //NUMBER BUTTONS ASSIGNMENT & ARRAY POPULATION
 numberButtons.forEach(button => {
   button.addEventListener("click", () => {
-    if(operand == "" && !displayChain[0]) {
-      console.log("not");
+    if(operand == "" && !displayChain[0]) { //check if 0 is displayed, if so: replace 0 with clicked number
+      console.log("displayChain[0] is false");
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
       toDisplay();
     } else if(operand == "" && displayChain[0]) {
-      console.log("true");
+      console.log("displayChain[0] is true");
       currentNumberArray1.push(button.textContent);
       currentNumber1 = arrayToNumber(currentNumberArray1);
       displayChain[0] = currentNumber1;
       console.log(currentNumber1);
       toDisplay();
-    } else {
+    } else if(operand != "") {
       currentNumberArray2.push(button.textContent);
       currentNumber2 = arrayToNumber(currentNumberArray2);
-      displayChain.push(currentNumber2);
+      displayChain[displayChain.length] = currentNumber2;
       console.log(currentNumber2);
-      toDisplay(currentNumber2);
-    }
-    console.log(displayChain);
-  })});
+      toDisplay();
+    // } else {
+    //   currentNumberArray2.push(button.textContent);
+    //   currentNumber2 = arrayToNumber(currentNumberArray2);
+    //   displayChain.push(currentNumber2);
+    //   console.log(currentNumber2);
+    //   toDisplay(currentNumber2);
+    // }
+    // console.log(displayChain);
+  }})});
 
 function arrayToNumber(arr) {
   return parseFloat(arr.join(""));
@@ -86,7 +92,7 @@ operators.forEach(operator => {
   })});
 
 function result() {
-  result = operate(operand, currentNumber1, currentNumber2);
+  let result = operate(operand, currentNumber1, currentNumber2);
   console.log(result);
   displayChain = [result];
   toDisplay();
