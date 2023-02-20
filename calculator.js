@@ -57,25 +57,27 @@ operatorButtons.forEach(operatorButton => {
     functionName = operatorButton.classList[0] //assign "add", "subtract", "multiply" or "divide" to functionName
     if(currentNumber1 && currentNumber2 && operand) {
       result();
+    } else if(currentNumber1 && !currentNumber2 && operand) {
+      equals();
     }
     console.log(functionName);
     switch(functionName) {
       case "add":
-        operand = add;
-        displayChain.push(" + ");
-        break
+      operand = add;
+      displayChain.push(" + ");
+      break
       case "subtract":
-        operand = subtract;
-        displayChain.push(" - ");
-        break
+      operand = subtract;
+      displayChain.push(" - ");
+      break
       case "multiply":
-        operand = multiply;
-        displayChain.push(" * ");
-        break
+      operand = multiply;
+      displayChain.push(" * ");
+      break
       case "divide":
-        operand = divide;
-        displayChain.push(" / ");
-        break
+      operand = divide;
+      displayChain.push(" / ");
+      break
     }
   toDisplay()
 })});
@@ -123,14 +125,15 @@ function equals() {
       displayChain = [currentNumber1];
       toDisplay();
     }, 1200);
-  } else if(currentNumber2 == 0 && operand == divide) {
+  } else if(!currentNumber2 && operand == divide) {
       displayChain = ["DIVISION BY 0"];
+      console.log(displayChain);
       toDisplay();
       setTimeout(() => {
         displayChain = [currentNumber1 + " / "];
         toDisplay();
       }, 1200);
-  } else if(!currentNumber2 && operand) {
+  } else if(currentNumber2 == null && operand) {
       displayChain = ["ERROR: NUMBER 2"];
       toDisplay();
       setTimeout(() => {
