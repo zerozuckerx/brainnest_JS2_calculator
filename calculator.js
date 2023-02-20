@@ -163,32 +163,39 @@ function clear() {
 undoButton.addEventListener("click", undo);
 
 function undo() {
-  if(currentNumber1 == 0 && currentNumber2 == 0) {
+  if(!currentNumber1 && !currentNumber2) {
     console.log("both 0");
     return;
+  } else if(operand) {
+    displayChain.pop();
+    operand = null;
+    console.log("operand pop");
+    toDisplay();
   } else if(!currentNumber2) {
     currentNumberArray1.pop();
     currentNumber1 = arrayToNumber(currentNumberArray1);
+    displayChain = [currentNumber1];
     console.log("normal pop num1");
-      if(isNaN(currentNumber1)) {
-        console.log("NaN triggered num1");
-        currentNumber1 = 0;
-        return toDisplay(currentNumber1);
-      }
-    currentNumber1 = arrayToNumber(currentNumberArray1);
-    console.log(currentNumber1);
-    toDisplay(currentNumber1);
+    toDisplay();
+    if(isNaN(currentNumber1)) {
+      console.log("NaN triggered num1");
+      currentNumber1 = 0;
+      displayChain = [0];
+      return toDisplay();
+    }
   } else {
       currentNumberArray2.pop();
       currentNumber2 = arrayToNumber(currentNumberArray2);
+      displayChain[displayChain.length-1] = currentNumber2;
       console.log("normal pop num2");
+      toDisplay();
       if(isNaN(currentNumber2)) {
         console.log("NaN triggered num2");
         currentNumber2 = 0;
-      return toDisplay(currentNumber1);
+        return toDisplay();
       }
-    console.log(currentNumberArray1, currentNumberArray2);
   }
+  console.log(currentNumberArray1, currentNumberArray2);
 }
 
 //use .includes() for stopping after 1 .
